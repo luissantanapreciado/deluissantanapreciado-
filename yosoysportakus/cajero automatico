@@ -1,0 +1,53 @@
+saldo = 1000
+intentos_pin = 0
+pin = 1234
+
+while True:
+    pin_ingresado = int(input(" Ingresa tu pin: "))
+    if pin_ingresado == pin:
+        while True:
+            print(" --- Menu Principal --- ")
+            print(" 1. Consultar su saldo ")
+            print(" 2. Retiro")
+            print(" 3. Deposito ")
+            print(" 4. Salir ")
+            opcion = int(input(" Ingresa una opcion: "))
+            
+            if opcion == 1:
+                print("Su saldo es de: $", saldo)
+                
+            elif opcion == 2:   
+                retirar = int(input(" Ingrese lo que desee retirar: "))
+                if retirar <= 0:
+                    print(" La cantidad debe ser mayor a 0")
+                elif retirar > saldo:
+                    print(" Saldo insuficiente ")
+                else:
+                    saldo -= retirar
+                    print(" Has retirado: $", retirar)
+                    print(" Tu nuevo saldo es: $", saldo) 
+            
+            elif opcion == 3:
+                depositar = int(input(" Ingresa la cantidad a depositar: "))
+                if depositar <= 0:
+                    print(" La cantidad debe ser mayor a 0")
+                else:
+                    saldo += depositar
+                    print(" Has depositado: $", depositar)
+                    print(" Tu nuevo saldo es: $", saldo)
+            
+            elif opcion == 4:
+                print(" ¡Gracias por usar nuestro cajero! ")
+                exit()
+            else:
+                print(" Opcion no valida")
+                
+    else:
+        print(" Pin incorrecto ")
+        intentos_pin += 1
+        if intentos_pin == 2:
+            print(" Inténtelo más tarde ")
+            break
+        else:
+            restantes = 2 - intentos_pin
+            print(" Intentos restantes:", restantes)
